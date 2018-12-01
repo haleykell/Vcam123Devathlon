@@ -1,0 +1,9 @@
+# Created by .ignore support api (hsz.mobi)
+### MavenIntelliJ template
+### Example user template
+
+# IntelliJ project files
+.idea/
+target/
+*.iml
+*/dependency-reduced-pom.xml
