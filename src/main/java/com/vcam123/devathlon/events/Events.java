@@ -2,17 +2,43 @@ package com.vcam123.devathlon.events;
 
 import com.vcam123.devathlon.mirror.MirrorMessage;
 import com.vcam123.devathlon.mirror.TwoWayMirror;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+
+import java.util.ArrayList;
 
 // I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
 public class Events implements Listener {
 
     private MirrorMessage messages;
+
+    @EventHandler
+    public void onJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (player.hasPlayedBefore()) return;
+        ItemStack item = new ItemStack(Material.PAPER, 1);
+        ItemMeta meta = item.getItemMeta();
+        meta.setDisplayName("Two Way Mirror Instructions");
+        ArrayList<String> lore = new ArrayList<>();
+        lore.add("A two way mirror allows you to communicate with");
+        lore.add("someone who also has a two way mirror!");
+        lore.add("To use: right click while holding the mirror");
+        lore.add("Then say the ign of the person you want to talk to in chat");
+        lore.add("To accept communication: confirm the person's ign in chat");
+        lore.add("or say no to decline. Make sure to hold your mirror!");
+        lore.add("To end communication: either party can say goodbye in chat");
+        meta.setLore(lore);
+        item.setItemMeta(meta);
+        player.getInventory().addItem(item);
+    }
 
     // I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
     @EventHandler
