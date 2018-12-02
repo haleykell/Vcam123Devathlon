@@ -1,8 +1,12 @@
 package com.vcam123.devathlon;
 
+import com.vcam123.devathlon.commands.AdminCommand;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class DevAthlon extends JavaPlugin {
+public class DevAthlon extends JavaPlugin implements Listener {
+
+    private AdminCommand command = new AdminCommand();
 
     @Override
     public void onEnable() {
@@ -24,12 +28,18 @@ public class DevAthlon extends JavaPlugin {
                 // PlayerChatEvent
                 // PlayerMirrorMessageEvent?
                 // Player right click event
+        getCommand(command.admincmd).setExecutor(command);
         getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
-        
+        loadConfig();
     }
 
     @Override
     public void onDisable() {
         getServer().getConsoleSender().sendMessage("\nPlugin disabled\n");
+    }
+
+    public void loadConfig() {
+        getConfig().options().copyDefaults(true);
+        saveConfig();
     }
 }
