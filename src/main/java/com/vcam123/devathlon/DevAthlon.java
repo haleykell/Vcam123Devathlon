@@ -24,10 +24,12 @@ public class DevAthlon extends JavaPlugin {
                 // PlayerChatEvent
                 // PlayerMirrorMessageEvent?
                 // Player right click event
+        getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
+        
     }
 
     @Override
     public void onDisable() {
-
+        getServer().getConsoleSender().sendMessage("\nPlugin disabled\n");
     }
 }
