@@ -1,4 +1,4 @@
-package com.vcam123.devathlon.items;
+package com.vcam123.devathlon.mirror;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ public class TwoWayMirror {
         lore.add("someone who also has a two way mirror!");
         lore.add("To use: right click while holding the mirror");
         lore.add("Then say the ign of the person you want to talk to in chat");
-        lore.add("To accept communication: confirm the person's ign in chat");
+        lore.add("To accept communication: confirm the person's ign in chat or say no to decline");
         lore.add("Make sure to hold your mirror!");
         lore.add("To end communication: either party can say goodbye in chat");
         meta.setLore(lore);

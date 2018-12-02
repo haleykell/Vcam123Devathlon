@@ -1,6 +1,6 @@
 package com.vcam123.devathlon.commands;
 
-import com.vcam123.devathlon.items.TwoWayMirror;
+import com.vcam123.devathlon.mirror.TwoWayMirror;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
