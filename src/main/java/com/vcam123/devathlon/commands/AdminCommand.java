@@ -9,15 +9,20 @@ import org.bukkit.event.Listener;
 
 public class AdminCommand implements Listener, CommandExecutor {
 
-    public String admincmd = "givemirror";
+    public String admin = "mirror";
+    public String instructions = "instructions";
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if (commandSender instanceof Player) {
-            if (command.getName().equalsIgnoreCase(admincmd)) {
-                TwoWayMirror mirror = new TwoWayMirror();
+            TwoWayMirror mirror = new TwoWayMirror();
+            if (command.getName().equalsIgnoreCase(admin)) {
                 mirror.giveMirror((Player) commandSender);
                 return true;
+            }
+            else if (command.getName().equalsIgnoreCase(instructions)) {
+                Player player = (Player) commandSender;
+                mirror.getInstructions(player);
             }
         }
         else {

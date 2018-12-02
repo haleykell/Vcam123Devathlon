@@ -28,7 +28,8 @@ public class DevAthlon extends JavaPlugin implements Listener {
                 // PlayerChatEvent
                 // PlayerMirrorMessageEvent?
                 // Player right click event
-        getCommand(command.admincmd).setExecutor(command);
+        getCommand(command.admin).setExecutor(command);
+        getCommand(command.instructions).setExecutor(command);
         getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
         loadConfig();
     }
