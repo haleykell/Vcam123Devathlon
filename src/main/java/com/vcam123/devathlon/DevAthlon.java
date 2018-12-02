@@ -13,21 +13,17 @@ public class DevAthlon extends JavaPlugin {
                 // If they're online AND they have a glass pane with lore anywhere in their inventory
                 // send them a message saying "ign would like to talk! hold your mirror to talk!"
                 // then they can send messages to each other
-            // Flying carpets
-                // Hold a carpet in one hand, fence in the other
-                // decide on controls
 
         // HERE ARE MY PROBLEMS AND STUFF TO LOOK INTO:
-            // textures?
             // runnables and listeners?
                 // right click listener then check what item?
-            // may need to adjust mirrors to make sure you agree to message or a better way of accepting
-            // carpet controls
 
         // YAY LETS GET PREPARED! HERE ARE MY NEXT STEPS TO TAKE:
-            // Set up custom items
-                // Display name, lore
-                // maybe textures
+            // Set up messaging logic
+            // Set up events
+                // PlayerChatEvent
+                // PlayerMirrorMessageEvent?
+                // Player right click event
     }
 
     @Override
