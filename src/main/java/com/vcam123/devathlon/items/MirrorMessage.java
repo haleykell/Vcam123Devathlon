@@ -1,5 +1,4 @@
 package com.vcam123.devathlon.items;
 
-public class FlyingCarpet {
-
+public class MirrorMessage {
 }
