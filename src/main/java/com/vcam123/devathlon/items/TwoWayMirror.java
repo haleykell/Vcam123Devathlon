@@ -15,10 +15,12 @@ public class TwoWayMirror {
         ItemMeta meta = mirror.getItemMeta();
         ArrayList<String> lore = new ArrayList<>();
         meta.setDisplayName("Two Way Mirror");
-        lore.add("A two way mirror allows you to communicate with someone who also has a two way mirror!");
-        lore.add("To use: right click while holding the item");
+        lore.add("A two way mirror allows you to communicate with");
+        lore.add("someone who also has a two way mirror!");
+        lore.add("To use: right click while holding the mirror");
         lore.add("Then say the ign of the person you want to talk to in chat");
-        lore.add("To accept communication: confirm the person's ign in chat while holding your mirror");
+        lore.add("To accept communication: confirm the person's ign in chat");
+        lore.add("Make sure to hold your mirror!");
         lore.add("To end communication: either party can say goodbye in chat");
         meta.setLore(lore);
         mirror.setItemMeta(meta);
