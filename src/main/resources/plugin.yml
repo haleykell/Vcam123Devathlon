@@ -2,6 +2,9 @@ name: DevAthlon
 main: com.vcam123.devathlon.DevAthlon
 version: 1.0
 commands:
-    givemirror:
+    mirror:
         usage: /<command>
         description: Admin command for testing
+    instructions:
+        usage: /<command>
+        description: Gives mirror instructions

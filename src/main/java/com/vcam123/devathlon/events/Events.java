@@ -2,7 +2,6 @@ package com.vcam123.devathlon.events;
 
 import com.vcam123.devathlon.mirror.MirrorMessage;
 import com.vcam123.devathlon.mirror.TwoWayMirror;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -10,10 +9,6 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-
-import java.util.ArrayList;
 
 // I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
 public class Events implements Listener {
