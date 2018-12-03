@@ -18,6 +18,7 @@ public class JoinEvent implements Listener {
         if (player.hasPlayedBefore()) {
             MirrorEvents.setDefaultConfig(player);
             plugin.saveConfig();
+            player.setFlying(false);
             return;
         }
         TwoWayMirror mirror = new TwoWayMirror();
