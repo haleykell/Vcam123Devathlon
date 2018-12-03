@@ -1,10 +1,13 @@
 package com.vcam123.devathlon;
 
+import com.vcam123.devathlon.commands.CarpetCommand;
 import com.vcam123.devathlon.commands.MirrorCommand;
 import com.vcam123.devathlon.commands.InstructionsCommand;
+import com.vcam123.devathlon.events.CarpetEvents;
 import com.vcam123.devathlon.events.JoinEvent;
 import com.vcam123.devathlon.events.LogOutEvent;
 import com.vcam123.devathlon.events.MirrorEvents;
+import com.vcam123.devathlon.flyingCarpet.FlyingCarpet;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,6 +15,7 @@ public class DevAthlon extends JavaPlugin implements Listener {
 
     private MirrorCommand mirror = new MirrorCommand();
     private InstructionsCommand instructions = new InstructionsCommand();
+    private CarpetCommand carpet = new CarpetCommand();
 
     @Override
     public void onEnable() {
@@ -35,11 +39,18 @@ public class DevAthlon extends JavaPlugin implements Listener {
                 // Player right click event
         getCommand(mirror.admin).setExecutor(mirror);
         getCommand(instructions.instructions).setExecutor(instructions);
-        getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
+        getCommand(carpet.cmd).setExecutor(carpet);
+
         getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         getServer().getPluginManager().registerEvents(new LogOutEvent(), this);
         getServer().getPluginManager().registerEvents(new MirrorEvents(), this);
+        getServer().getPluginManager().registerEvents(new CarpetEvents(), this);
+
+        FlyingCarpet flyingCarpet = new FlyingCarpet();
+        flyingCarpet.customRecipe();
+
         loadConfig();
+        getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
     }
 
     @Override
