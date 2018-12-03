@@ -4,7 +4,10 @@ version: 1.0
 commands:
     mirror:
         usage: /<command>
-        description: Admin command for testing
+        description: Gives a two way mirror
     instructions:
         usage: /<command>
         description: Gives mirror instructions
+    carpet:
+        usage: /<command>
+        description: Gives a flying carpet
