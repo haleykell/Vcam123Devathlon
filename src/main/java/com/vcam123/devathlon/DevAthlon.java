@@ -59,7 +59,6 @@ public class DevAthlon extends JavaPlugin implements Listener {
     }
 
     public void loadConfig() {
-        // TODO: change defaults?
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
