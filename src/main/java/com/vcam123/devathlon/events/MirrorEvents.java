@@ -15,13 +15,11 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
-// I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
 public class MirrorEvents implements Listener {
 
     private MirrorMessage messages;
     private static Plugin plugin = DevAthlon.getPlugin(DevAthlon.class);
 
-    // I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
     @EventHandler
     public void onRightClick(PlayerInteractEvent event) {
         Action action = event.getAction();
@@ -42,11 +40,10 @@ public class MirrorEvents implements Listener {
         player.sendMessage(ChatColor.BLUE + "Who would you like to talk to using the two way mirror?");
     }
 
-    // I DON'T KNOW IF I'M DOING THESE EVENTS RIGHT SO I HAVE TO CHECK THIS LATER
+    // I KNOW THIS IS SUPER FUCKING UGLY MAYBE I'LL HAVE TIME TO DETERMINE AN EASIER WAY TO DO IT
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         event.setCancelled(true);
-        // Check this from a config instead
         Player player = event.getPlayer();
         String message = event.getMessage();
         if (plugin.getConfig().get("Users." + player.getUniqueId() + ".Messages.active").equals(true)
@@ -104,6 +101,9 @@ public class MirrorEvents implements Listener {
                 setDefaultConfig(player);
                 player.sendMessage(ChatColor.BLUE + "Communication ending.");
                 // TODO: FIX THIS
+                // This should check the other person and reset their config and send them the communication ending message
+                // Also need this to send regular messages back and forth
+                // How to get Player from UUID cause this doesn't seem to be working correctly
                 UUID other = UUID.fromString((String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.initiated"));
                 if (((String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.initiated")).equalsIgnoreCase(player.getUniqueId().toString())) {
                     other = UUID.fromString((String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.receiving"));
