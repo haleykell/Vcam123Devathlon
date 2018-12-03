@@ -3,10 +3,9 @@ package com.vcam123.devathlon;
 import com.vcam123.devathlon.commands.CarpetCommand;
 import com.vcam123.devathlon.commands.MirrorCommand;
 import com.vcam123.devathlon.commands.InstructionsCommand;
-import com.vcam123.devathlon.events.CarpetEvents;
 import com.vcam123.devathlon.events.JoinEvent;
 import com.vcam123.devathlon.events.LogOutEvent;
-import com.vcam123.devathlon.events.MirrorEvents;
+import com.vcam123.devathlon.events.Events;
 import com.vcam123.devathlon.flyingCarpet.FlyingCarpet;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -43,8 +42,7 @@ public class DevAthlon extends JavaPlugin implements Listener {
 
         getServer().getPluginManager().registerEvents(new JoinEvent(), this);
         getServer().getPluginManager().registerEvents(new LogOutEvent(), this);
-        getServer().getPluginManager().registerEvents(new MirrorEvents(), this);
-        getServer().getPluginManager().registerEvents(new CarpetEvents(), this);
+        getServer().getPluginManager().registerEvents(new Events(), this);
 
         FlyingCarpet flyingCarpet = new FlyingCarpet();
         flyingCarpet.customRecipe();

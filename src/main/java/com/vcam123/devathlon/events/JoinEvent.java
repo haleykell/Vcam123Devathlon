@@ -16,7 +16,7 @@ public class JoinEvent implements Listener {
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         if (player.hasPlayedBefore()) {
-            MirrorEvents.setDefaultConfig(player);
+            Events.setDefaultConfig(player);
             plugin.saveConfig();
             player.setFlying(false);
             return;

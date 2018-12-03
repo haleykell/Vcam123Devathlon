@@ -1,6 +1,7 @@
 package com.vcam123.devathlon.events;
 
 import com.vcam123.devathlon.DevAthlon;
+import com.vcam123.devathlon.flyingCarpet.FlyingCarpet;
 import com.vcam123.devathlon.mirror.MirrorMessage;
 import com.vcam123.devathlon.mirror.TwoWayMirror;
 import org.bukkit.Bukkit;
@@ -15,7 +16,7 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
-public class MirrorEvents implements Listener {
+public class Events implements Listener {
 
     // TODO: Cancelling communication after a certain amount of time?
 
@@ -26,6 +27,27 @@ public class MirrorEvents implements Listener {
     public void onRightClick(PlayerInteractEvent event) {
         Action action = event.getAction();
         Player player = event.getPlayer();
+        FlyingCarpet carpet = new FlyingCarpet();
+
+        if (action.equals(Action.LEFT_CLICK_AIR) && event.hasItem()) {
+            if (!player.isFlying()) {
+                if (!event.getItem().equals(carpet.getCarpet())) {
+                    player.sendMessage((ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA
+                            + "You need to hold your carpet in your main hand! Try again!"));
+                    return;
+                }
+                plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "\ntest 1\n");
+                player.setFlying(true);
+                player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You are flying!");
+                return;
+            }
+            else {
+                player.setFlying(false);
+                player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You have stopped flying.");
+                return;
+            }
+        }
+
         setDefaultConfig(player);
         TwoWayMirror mirror = new TwoWayMirror();
 

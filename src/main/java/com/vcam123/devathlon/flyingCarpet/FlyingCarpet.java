@@ -20,8 +20,9 @@ public class FlyingCarpet {
         ItemMeta meta = carpet.getItemMeta();
         meta.setDisplayName("Magical Flying Carpet");
         ArrayList<String> lore = new ArrayList<>();
-        lore.add("Sneak while holding to fly!");
-        lore.add("Say stop in chat to stop flying!");
+        lore.add("Left click while holding the carpet to start flying!");
+        lore.add("Left click again to stop flying!");
+        lore.add("You don't have to keep holding the carpet to keep flying!");
         meta.setLore(lore);
         carpet.setItemMeta(meta);
     }

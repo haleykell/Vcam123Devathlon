@@ -14,7 +14,7 @@ public class LogOutEvent implements Listener {
     @EventHandler
     public void onLogOut(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        MirrorEvents.setDefaultConfig(player);
+        Events.setDefaultConfig(player);
         plugin.saveConfig();
         player.setFlying(false);
     }
