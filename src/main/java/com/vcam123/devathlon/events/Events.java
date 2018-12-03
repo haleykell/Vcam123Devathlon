@@ -24,7 +24,7 @@ public class Events implements Listener {
     private Plugin plugin = DevAthlon.getPlugin(DevAthlon.class);
 
     @EventHandler
-    public void onRightClick(PlayerInteractEvent event) {
+    public void onPlayerClick(PlayerInteractEvent event) {
         Action action = event.getAction();
         Player player = event.getPlayer();
         FlyingCarpet carpet = new FlyingCarpet();
