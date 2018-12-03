@@ -28,6 +28,8 @@ public class FlyingCarpet {
 
     public void giveCarpet(Player player) { player.getInventory().addItem(carpet); }
 
+    public ItemStack getCarpet() { return carpet; }
+
     public void customRecipe() {
         ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(plugin, "flying_carpet"), carpet);
 
