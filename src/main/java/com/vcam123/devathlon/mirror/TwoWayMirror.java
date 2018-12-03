@@ -20,6 +20,18 @@ public class TwoWayMirror {
         lore.add("after joining the server for the first time");
         meta.setLore(lore);
         mirror.setItemMeta(meta);
+        ItemMeta instructionsMeta = instructions.getItemMeta();
+        instructionsMeta.setDisplayName("Two Way Mirror Instructions");
+        ArrayList<String> instructionsLore = new ArrayList<>();
+        instructionsLore.add("A two way mirror allows you to communicate with");
+        instructionsLore.add("someone who also has a two way mirror!");
+        instructionsLore.add("To use: right click while holding the mirror");
+        instructionsLore.add("Then say the ign of the person you want to talk to in chat");
+        instructionsLore.add("To accept communication: confirm the person's ign in chat");
+        instructionsLore.add("or say no to decline. Make sure to hold your mirror!");
+        instructionsLore.add("To end communication: either party can say goodbye in chat");
+        instructionsMeta.setLore(instructionsLore);
+        instructions.setItemMeta(instructionsMeta);
     }
 
     public void giveMirror(Player player) {
@@ -30,19 +42,5 @@ public class TwoWayMirror {
         return mirror;
     }
 
-    public void getInstructions(Player player) {
-        ItemMeta meta = instructions.getItemMeta();
-        meta.setDisplayName("Two Way Mirror Instructions");
-        ArrayList<String> lore = new ArrayList<>();
-        lore.add("A two way mirror allows you to communicate with");
-        lore.add("someone who also has a two way mirror!");
-        lore.add("To use: right click while holding the mirror");
-        lore.add("Then say the ign of the person you want to talk to in chat");
-        lore.add("To accept communication: confirm the person's ign in chat");
-        lore.add("or say no to decline. Make sure to hold your mirror!");
-        lore.add("To end communication: either party can say goodbye in chat");
-        meta.setLore(lore);
-        instructions.setItemMeta(meta);
-        player.getInventory().addItem(instructions);
-    }
+    public void getInstructions(Player player) { player.getInventory().addItem(instructions); }
 }

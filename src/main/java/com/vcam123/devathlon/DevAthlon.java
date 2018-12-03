@@ -2,6 +2,9 @@ package com.vcam123.devathlon;
 
 import com.vcam123.devathlon.commands.MirrorCommand;
 import com.vcam123.devathlon.commands.InstructionsCommand;
+import com.vcam123.devathlon.events.JoinEvent;
+import com.vcam123.devathlon.events.LogOutEvent;
+import com.vcam123.devathlon.events.MirrorEvents;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -33,6 +36,9 @@ public class DevAthlon extends JavaPlugin implements Listener {
         getCommand(mirror.admin).setExecutor(mirror);
         getCommand(instructions.instructions).setExecutor(instructions);
         getServer().getConsoleSender().sendMessage("\nPlugin enabled\n");
+        getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        getServer().getPluginManager().registerEvents(new LogOutEvent(), this);
+        getServer().getPluginManager().registerEvents(new MirrorEvents(), this);
         loadConfig();
     }
 
@@ -42,6 +48,7 @@ public class DevAthlon extends JavaPlugin implements Listener {
     }
 
     public void loadConfig() {
+        // TODO: change defaults?
         getConfig().options().copyDefaults(true);
         saveConfig();
     }
