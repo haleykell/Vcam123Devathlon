@@ -68,9 +68,7 @@ public class Events implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + Boolean.toString(messages.isActive(player)));
-        if (!messages.isActive(player) && messages.getInitiated(player) == null)  return;
-        plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "test3");
+        if (messages.isNotActive(player) && messages.getInitiated(player) == null)  return;
         event.setCancelled(true);
         String message = event.getMessage();
 
@@ -94,12 +92,12 @@ public class Events implements Listener {
             }
 
             receiving.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
-                    ChatColor.BLUE + player.getPlayerListName() + "would like to message you.");
+                    ChatColor.BLUE + player.getPlayerListName() + " would like to message you.");
             if (!receiving.getInventory().contains(mirror.getMirror())) {
                 receiving.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + "You need to be holding a two way mirror!");
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " + ChatColor.BLUE +
-                        receiving.getPlayerListName() + "was not holding a two way mirror! Try again.");
+                        receiving.getPlayerListName() + " was not holding a two way mirror! Try again.");
                 setDefaultConfig(player);
                 plugin.saveConfig();
                 return;
@@ -113,7 +111,7 @@ public class Events implements Listener {
             receiving.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                     ChatColor.BLUE + "To confirm messaging, say the other person's name in chat.");
         }
-        else if (!messages.isActive(player)) {
+        else if (messages.isNotActive(player)) {
             if (message.equalsIgnoreCase("no")) {
                 UUID initiated = UUID.fromString(messages.getInitiated(player).getUniqueId().toString());
                 Player init = Bukkit.getPlayer(initiated);
@@ -145,12 +143,12 @@ public class Events implements Listener {
         }
         else {
             if (message.equalsIgnoreCase("goodbye")) {
-                setDefaultConfig(player);
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + "You said goodbye. Communication ending.");
                 messages.getReceiving(player).sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
-                        ChatColor.BLUE + player.getPlayerListName() + "said goodbye. Communication ending.");
+                        ChatColor.BLUE + player.getPlayerListName() + " said goodbye. Communication ending.");
                 setDefaultConfig(messages.getReceiving(player));
+                setDefaultConfig(player);
                 plugin.saveConfig();
             }
             else {
