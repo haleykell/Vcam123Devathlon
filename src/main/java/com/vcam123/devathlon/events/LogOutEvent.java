@@ -17,5 +17,6 @@ public class LogOutEvent implements Listener {
         Events.setDefaultConfig(player);
         plugin.saveConfig();
         player.setFlying(false);
+        player.setAllowFlight(false);
     }
 }

@@ -18,7 +18,9 @@ import java.util.UUID;
 
 public class Events implements Listener {
 
-    // TODO: Cancelling communication after a certain amount of time?
+    // TODO: Cancelling communication after a certain amount of time
+    // TODO: Setting allow flight to false if you're on the ground
+    // TODO: Particle trail for flying carpet when you're flying
 
     private static MirrorMessage messages = new MirrorMessage();
     private Plugin plugin = DevAthlon.getPlugin(DevAthlon.class);
