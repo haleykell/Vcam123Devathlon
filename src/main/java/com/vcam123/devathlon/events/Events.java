@@ -36,7 +36,6 @@ public class Events implements Listener {
                             + "You need to hold your carpet in your main hand! Try again!"));
                     return;
                 }
-                plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "\ntest 1\n");
                 player.setFlying(true);
                 player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You are flying!");
                 return;
