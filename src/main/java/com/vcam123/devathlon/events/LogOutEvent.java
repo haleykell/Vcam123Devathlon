@@ -14,7 +14,7 @@ public class LogOutEvent implements Listener {
     @EventHandler
     public void onLogOut(PlayerQuitEvent event) {
         Player player = event.getPlayer();
-        Events.setDefaultConfig(player);
+        DevAthlon.setDefaultConfig(player);
         plugin.saveConfig();
         player.setFlying(false);
         player.setAllowFlight(false);

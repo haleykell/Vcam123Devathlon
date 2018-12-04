@@ -18,21 +18,24 @@ public class MirrorMessage {
     }
 
     public Player getInitiated(Player player) {
-        String uuid = (String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.initiated");
+        String uuid = (String) plugin.getConfig().get("Users." +
+                player.getUniqueId().toString() + ".Messages.initiated");
         if (uuid.equalsIgnoreCase("no one yet")) return null;
         UUID initiated = UUID.fromString(uuid);
         return Bukkit.getPlayer(initiated);
     }
 
     public Player getReceiving(Player player) {
-        String uuid = (String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.receiving");
+        String uuid = (String) plugin.getConfig().get("Users." +
+                player.getUniqueId().toString() + ".Messages.receiving");
         if (uuid.equalsIgnoreCase("no one yet")) return null;
         UUID receiving = UUID.fromString(uuid);
         return Bukkit.getPlayer(receiving);
     }
 
     public boolean isNotActive(Player player) {
-        return !Boolean.parseBoolean(plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.active").toString());
+        return !Boolean.parseBoolean(plugin.getConfig().get("Users." +
+                player.getUniqueId().toString() + ".Messages.active").toString());
     }
 
     public void setInitiated(Player player, Player initiated) {

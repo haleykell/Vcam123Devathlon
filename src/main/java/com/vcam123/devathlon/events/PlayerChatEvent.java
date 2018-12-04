@@ -16,55 +16,14 @@ import org.bukkit.plugin.Plugin;
 
 import java.util.UUID;
 
-public class Events implements Listener {
+public class PlayerChatEvent implements Listener {
 
     // TODO: Cancelling communication after a certain amount of time
     // TODO: Setting allow flight to false if you're on the ground
     // TODO: Particle trail for flying carpet when you're flying
 
-    private static MirrorMessage messages = new MirrorMessage();
+    private MirrorMessage messages = new MirrorMessage();
     private Plugin plugin = DevAthlon.getPlugin(DevAthlon.class);
-
-    @EventHandler
-    public void onPlayerClick(PlayerInteractEvent event) {
-        Action action = event.getAction();
-        Player player = event.getPlayer();
-        FlyingCarpet carpet = new FlyingCarpet();
-
-        if (action.equals(Action.LEFT_CLICK_AIR) && event.hasItem()) {
-            if (!player.isFlying()) {
-                if (!event.getItem().equals(carpet.getCarpet())) {
-                    player.sendMessage((ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA
-                            + "You need to hold your carpet in your main hand! Try again!"));
-                    return;
-                }
-                player.setAllowFlight(true);
-                player.setFlying(true);
-                player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You are flying!");
-                return;
-            }
-            else {
-                player.setFlying(false);
-                player.setAllowFlight(false);
-                player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You have stopped flying.");
-                return;
-            }
-        }
-
-        setDefaultConfig(player);
-        TwoWayMirror mirror = new TwoWayMirror();
-
-        if (!action.equals(Action.RIGHT_CLICK_AIR)) return;
-        if (!event.hasItem() || (event.hasItem() && !event.getItem().equals(mirror.getMirror()))) return;
-
-        messages.setActive(player, true);
-        messages.setInitiated(player, player);
-        messages.setReceiving(player, null);
-        plugin.saveConfig();
-
-        player.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
-                ChatColor.BLUE + "Who would you like to talk to using the two way mirror?");
-    }
 
     // OKAY I MADE IT A LITTLE LESS UGLY BUT ITS STILL KINDA UGLY OH WELL
     @EventHandler
@@ -86,7 +45,7 @@ public class Events implements Listener {
 
             receiving = Bukkit.getPlayer(message);
             if (receiving == null) {
-                setDefaultConfig(player);
+                DevAthlon.setDefaultConfig(player);
                 plugin.saveConfig();
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + "Player is not online or doesn't exist.");
@@ -100,7 +59,7 @@ public class Events implements Listener {
                         ChatColor.BLUE + "You need to be holding a two way mirror!");
                 player.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " + ChatColor.BLUE +
                         receiving.getPlayerListName() + " was not holding a two way mirror! Try again.");
-                setDefaultConfig(player);
+                DevAthlon.setDefaultConfig(player);
                 plugin.saveConfig();
                 return;
             }
@@ -117,10 +76,10 @@ public class Events implements Listener {
             if (message.equalsIgnoreCase("no")) {
                 UUID initiated = UUID.fromString(messages.getInitiated(player).getUniqueId().toString());
                 Player init = Bukkit.getPlayer(initiated);
-                setDefaultConfig(player);
+                DevAthlon.setDefaultConfig(player);
                 init.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + "Player denied communication.");
-                setDefaultConfig(init);
+                DevAthlon.setDefaultConfig(init);
                 plugin.saveConfig();
             }
             else if (Bukkit.getOnlinePlayers().contains(Bukkit.getPlayer(message))){
@@ -136,10 +95,10 @@ public class Events implements Listener {
                         ChatColor.BLUE + "Something went wrong. Cancelling communication.");
                 UUID initiated = UUID.fromString(messages.getInitiated(player).getUniqueId().toString());
                 Player init = Bukkit.getPlayer(initiated);
-                setDefaultConfig(player);
+                DevAthlon.setDefaultConfig(player);
                 init.sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + "Something went wrong. Cancelling communication.");
-                setDefaultConfig(init);
+                DevAthlon.setDefaultConfig(init);
                 plugin.saveConfig();
             }
         }
@@ -149,19 +108,13 @@ public class Events implements Listener {
                         ChatColor.BLUE + "You said goodbye. Communication ending.");
                 messages.getReceiving(player).sendMessage(ChatColor.LIGHT_PURPLE + "MIRROR: " +
                         ChatColor.BLUE + player.getPlayerListName() + " said goodbye. Communication ending.");
-                setDefaultConfig(messages.getReceiving(player));
-                setDefaultConfig(player);
+                DevAthlon.setDefaultConfig(messages.getReceiving(player));
+                DevAthlon.setDefaultConfig(player);
                 plugin.saveConfig();
             }
             else {
                 messages.sendMessage(player, message);
             }
         }
-    }
-
-    public static void setDefaultConfig(Player player) {
-        messages.setActive(player, false);
-        messages.setReceiving(player, null);
-        messages.setInitiated(player, null);
     }
 }
