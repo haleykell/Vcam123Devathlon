@@ -15,7 +15,6 @@ public class JoinEvent implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.setAllowFlight(true);
         if (player.hasPlayedBefore()) {
             Events.setDefaultConfig(player);
             plugin.saveConfig();

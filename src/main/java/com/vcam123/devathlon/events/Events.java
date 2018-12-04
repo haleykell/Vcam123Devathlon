@@ -36,12 +36,14 @@ public class Events implements Listener {
                             + "You need to hold your carpet in your main hand! Try again!"));
                     return;
                 }
+                player.setAllowFlight(true);
                 player.setFlying(true);
                 player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You are flying!");
                 return;
             }
             else {
                 player.setFlying(false);
+                player.setAllowFlight(false);
                 player.sendMessage(ChatColor.GOLD + "FLYING CARPET: " + ChatColor.AQUA + "You have stopped flying.");
                 return;
             }
@@ -66,7 +68,9 @@ public class Events implements Listener {
     @EventHandler
     public void onPlayerChat(AsyncPlayerChatEvent event) {
         Player player = event.getPlayer();
-        if (!messages.isActive(player) && messages.getInitiated(player) == null) return;
+        plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + Boolean.toString(messages.isActive(player)));
+        if (!messages.isActive(player) && messages.getInitiated(player) == null)  return;
+        plugin.getServer().getConsoleSender().sendMessage(ChatColor.RED + "test3");
         event.setCancelled(true);
         String message = event.getMessage();
 
@@ -75,8 +79,9 @@ public class Events implements Listener {
         if (receiving == null) receivingUUID = "no one yet";
         else receivingUUID = receiving.getUniqueId().toString();
 
-        if ( messages.getInitiated(player).getUniqueId().toString().equalsIgnoreCase(player.getUniqueId().toString())
-                && messages.isActive(player)&& receivingUUID.equalsIgnoreCase("no one yet")) {
+        // NULL POINTER EXCEPTION FIX THIS
+        if (messages.getInitiated(player).getUniqueId().toString().equals(player.getUniqueId().toString())
+                && receivingUUID.equalsIgnoreCase("no one yet")) {
             TwoWayMirror mirror = new TwoWayMirror();
 
             receiving = Bukkit.getPlayer(message);

@@ -5,6 +5,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import java.util.UUID;
+
 public class MirrorMessage {
 
     private Plugin plugin = DevAthlon.getPlugin(DevAthlon.class);
@@ -16,34 +18,36 @@ public class MirrorMessage {
     }
 
     public Player getInitiated(Player player) {
-        return Bukkit.getPlayer((String) plugin.getConfig().get("Users." +
-                player.getUniqueId().toString() + ".Messages.initiated"));
+        String uuid = (String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.initiated");
+        UUID initiated = UUID.fromString(uuid);
+        return Bukkit.getPlayer(initiated);
     }
 
     public Player getReceiving(Player player) {
-        return Bukkit.getPlayer((String) plugin.getConfig().get("Users." +
-                player.getUniqueId().toString() + ".Messages.receiving"));
+        String uuid = (String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.receiving");
+        UUID receiving = UUID.fromString(uuid);
+        return Bukkit.getPlayer(receiving);
     }
 
     public boolean isActive(Player player) {
-        return (boolean) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.active");
+        return Boolean.parseBoolean((String) plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.active"));
     }
 
     public void setInitiated(Player player, Player initiated) {
-        if (initiated == null) plugin.getConfig().get("Users." +
+        if (initiated == null) plugin.getConfig().set("Users." +
                 player.getUniqueId().toString() + ".Messages.initiated", "no one yet");
-        else plugin.getConfig().get("Users." + player.getUniqueId().toString()
+        else plugin.getConfig().set("Users." + player.getUniqueId().toString()
                 + ".Messages.initiated", initiated.getUniqueId().toString());
     }
 
     public void setReceiving(Player player, Player receiving) {
-        if (receiving == null) plugin.getConfig().get("Users." +
+        if (receiving == null) plugin.getConfig().set("Users." +
                 player.getUniqueId().toString() + ".Messages.receiving", "no one yet");
-        else plugin.getConfig().get("Users." + player.getUniqueId().toString()
+        else plugin.getConfig().set("Users." + player.getUniqueId().toString()
                 + ".Messages.receiving", receiving.getUniqueId().toString());
     }
 
     public void setActive(Player player, boolean active) {
-        plugin.getConfig().get("Users." + player.getUniqueId().toString() + ".Messages.active", active);
+        plugin.getConfig().set("Users." + player.getUniqueId().toString() + ".Messages.active", active);
     }
 }
