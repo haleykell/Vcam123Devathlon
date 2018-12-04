@@ -1,6 +1,7 @@
 package com.vcam123.devathlon.events;
 
 import com.vcam123.devathlon.DevAthlon;
+import com.vcam123.devathlon.mirror.MirrorMessage;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -13,7 +14,14 @@ public class LogOutEvent implements Listener {
 
     @EventHandler
     public void onLogOut(PlayerQuitEvent event) {
+        MirrorMessage messages = new MirrorMessage();
         Player player = event.getPlayer();
+        if (!messages.isNotActive(player)) {
+            Player receiving = messages.getReceiving(player);
+            if (receiving != null) {
+                DevAthlon.setDefaultConfig(receiving);
+            }
+        }
         DevAthlon.setDefaultConfig(player);
         plugin.saveConfig();
         player.setFlying(false);

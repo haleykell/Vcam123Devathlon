@@ -19,7 +19,6 @@ import java.util.UUID;
 public class PlayerChatEvent implements Listener {
 
     // TODO: Cancelling communication after a certain amount of time
-    // TODO: Setting allow flight to false if you're on the ground
     // TODO: Particle trail for flying carpet when you're flying
 
     private MirrorMessage messages = new MirrorMessage();
